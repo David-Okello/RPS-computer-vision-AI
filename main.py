@@ -86,10 +86,10 @@ with mp_hands.Hands(model_complexity = 0,
         if 0 <= clock < 20:
             success = True
             gameText = 'Ready Players?'
-        elif clock < 30 : gameText = "Rock..."
-        elif clock < 40 : gameText = "Paper..."
-        elif clock < 50 : gameText = "Scissors..."
-        elif clock < 60 : gameText = "SHOOT!"
+        elif clock < 30 : gameText = "Ready?..."
+        #elif clock < 40 : gameText = "Set..."
+        elif clock < 45 : gameText = "Set..."
+        elif clock < 60 : gameText = "PLAY!"
         elif clock == 60 : 
             hls = results.multi_hand_landmarks
             if hls and len(hls) == 2: # Checks if hls is an actual list or null object. Checks number of hands
@@ -124,7 +124,7 @@ with mp_hands.Hands(model_complexity = 0,
         cv2.putText(img, gameText, (50,80), cv2.FONT_HERSHEY_PLAIN, 2, (0,255,255), 2, cv2.LINE_AA)
         cv2.putText(img, winner, (50,110), cv2.FONT_HERSHEY_PLAIN, 2, (0,255,255), 2, cv2.LINE_AA)
 
-        clock = (clock + 1) % 100  # Repeats every 100 frames
+        clock = (clock + 1) % 200  # Repeats every 200 frames
 
         cv2.imshow("Image", img)
         if cv2.waitKey(1) & 0xFF == ord('q'): break  # 1ms delay (waitkey) & Press 'q' to quit
